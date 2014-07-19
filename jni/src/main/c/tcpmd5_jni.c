@@ -5,8 +5,8 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-#include <org_opendaylight_bgpcep_tcpmd5_jni_NarSystem.h>
-#include <org_opendaylight_bgpcep_tcpmd5_jni_NativeKeyAccess.h>
+#include <org_opendaylight_tcpmd5_jni_NarSystem.h>
+#include <org_opendaylight_tcpmd5_jni_NativeKeyAccess.h>
 
 #include <errno.h>
 #include <stdarg.h>
@@ -219,11 +219,11 @@ static jint sanity_check(JNIEnv *env, jobject logger)
 }
 
 /*
- * Class:     org_opendaylight_bgpcep_tcpmd5_jni_NarSystem
+ * Class:     org_opendaylight_tcpmd5_jni_NarSystem
  * Method:    runUnitTestsNative
  * Signature: ()I
  */
-jint Java_org_opendaylight_bgpcep_tcpmd5_jni_NarSystem_runUnitTestsNative(JNIEnv *env, jobject obj)
+jint Java_org_opendaylight_tcpmd5_jni_NarSystem_runUnitTestsNative(JNIEnv *env, jobject obj)
 {
 	if (resolve_exceptions(env)) {
 		return 0;
@@ -246,22 +246,22 @@ jint Java_org_opendaylight_bgpcep_tcpmd5_jni_NarSystem_runUnitTestsNative(JNIEnv
 }
 
 /*
- * Class:     org_opendaylight_bgpcep_tcpmd5_jni_NativeKeyAccess
+ * Class:     org_opendaylight_tcpmd5_jni_NativeKeyAccess
  * Method:    isClassSupported0
  * Signature: (Ljava/lang/Class;)Z
  */
-jboolean Java_org_opendaylight_bgpcep_tcpmd5_jni_NativeKeyAccess_isClassSupported0(JNIEnv *env, jclass clazz, jclass arg)
+jboolean Java_org_opendaylight_tcpmd5_jni_NativeKeyAccess_isClassSupported0(JNIEnv *env, jclass clazz, jclass arg)
 {
 	const struct handler *h = find_handler(env, arg);
 	return h == NULL ? JNI_FALSE : JNI_TRUE;
 }
 
 /*
- * Class:     org_opendaylight_bgpcep_tcpmd5_jni_NativeKeyAccess
+ * Class:     org_opendaylight_tcpmd5_jni_NativeKeyAccess
  * Method:    setChannelKey0
  * Signature: (Ljava/nio/channels/Channel;[B)V
  */
-void Java_org_opendaylight_bgpcep_tcpmd5_jni_NativeKeyAccess_setChannelKey0(JNIEnv *env, jclass clazz, jobject channel, jbyteArray address, jbyteArray key)
+void Java_org_opendaylight_tcpmd5_jni_NativeKeyAccess_setChannelKey0(JNIEnv *env, jclass clazz, jobject channel, jbyteArray address, jbyteArray key)
 {
 	if (address == NULL) {
 		ILLEGAL_ARGUMENT("Address may not be null");

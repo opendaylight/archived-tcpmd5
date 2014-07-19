@@ -7,8 +7,8 @@
  */
 package org.opendaylight.controller.config.yang.tcpmd5.netty.cfg;
 
-import org.opendaylight.bgpcep.tcpmd5.KeyAccessFactory;
-import org.opendaylight.bgpcep.tcpmd5.netty.MD5NioSocketChannelFactory;
+import org.opendaylight.tcpmd5.api.KeyAccessFactory;
+import org.opendaylight.tcpmd5.netty.MD5NioSocketChannelFactory;
 
 /**
  * Service representing a way for accessing key informtion.

@@ -9,101 +9,37 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
-    <scm>
-        <connection>scm:git:ssh://git.opendaylight.org:29418/bgpcep.git</connection>
-        <developerConnection>scm:git:ssh://git.opendaylight.org:29418/bgpcep.git</developerConnection>
-        <url>https://wiki.opendaylight.org/view/BGP_LS_PCEP:Main</url>
-        <tag>HEAD</tag>
-    </scm>
     <parent>
-        <groupId>org.opendaylight.bgpcep</groupId>
-        <artifactId>commons.parent</artifactId>
-        <version>0.3.1-SNAPSHOT</version>
-        <relativePath>../commons/parent</relativePath>
+        <groupId>org.opendaylight.tcpmd5</groupId>
+        <artifactId>tcpmd5-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>parent</relativePath>
     </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>tcpmd5-aggregator</artifactId>
+    <description>RFC2385-enabled sockets</description>
+    <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
+
     <prerequisites>
         <maven>3.0.4</maven>
     </prerequisites>
 
-    <artifactId>tcpmd5-parent</artifactId>
-    <description>RFC2385-enabled sockets components</description>
-    <packaging>pom</packaging>
-    <name>${project.artifactId}</name>
+    <scm>
+        <connection>scm:git:ssh://git.opendaylight.org:29418/tcpmd5.git</connection>
+        <developerConnection>scm:git:ssh://git.opendaylight.org:29418/tcpmd5.git</developerConnection>
+        <url>https://wiki.opendaylight.org/view/TCPMD5:Main</url>
+        <tag>HEAD</tag>
+    </scm>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>tcpmd5-api</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>tcpmd5-api-cfg</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>tcpmd5-jni</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>tcpmd5-jni-cfg</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>tcpmd5-netty</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>tcpmd5-nio</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>tcpmd5-jni</artifactId>
-                <version>${project.version}</version>
-                <type>nar</type>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>tcpmd5-controller-config</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+    <modules>
+        <module>api</module>
+        <module>controller-config</module>
+        <module>jni</module>
+        <module>netty</module>
+        <module>nio</module>
+        <module>parent</module>
+    </modules>
 
-    <profiles>
-        <profile>
-            <id>jni</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <modules>
-                <module>api</module>
-                <module>jni</module>
-                <module>jni-cfg</module>
-                <module>netty</module>
-                <module>nio</module>
-                <module>controller-config</module>
-            </modules>
-        </profile>
-        <profile>
-            <id>default</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <modules>
-                <module>api</module>
-                <module>jni-cfg</module>
-                <module>netty</module>
-                <module>nio</module>
-                <module>controller-config</module>
-            </modules>
-        </profile>
-    </profiles>
 </project>
