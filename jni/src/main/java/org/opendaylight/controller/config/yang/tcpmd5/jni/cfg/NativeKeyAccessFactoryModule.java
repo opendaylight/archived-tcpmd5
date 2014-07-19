@@ -9,10 +9,10 @@ package org.opendaylight.controller.config.yang.tcpmd5.jni.cfg;
 
 import java.nio.channels.Channel;
 
-import org.opendaylight.bgpcep.tcpmd5.KeyAccess;
-import org.opendaylight.bgpcep.tcpmd5.KeyAccessFactory;
-import org.opendaylight.bgpcep.tcpmd5.jni.NativeKeyAccessFactory;
-import org.opendaylight.bgpcep.tcpmd5.jni.NativeSupportUnavailableException;
+import org.opendaylight.tcpmd5.api.KeyAccess;
+import org.opendaylight.tcpmd5.api.KeyAccessFactory;
+import org.opendaylight.tcpmd5.jni.NativeKeyAccessFactory;
+import org.opendaylight.tcpmd5.jni.NativeSupportUnavailableException;
 
 /**
  * Service representing a way for accessing key informtion.
