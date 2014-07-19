@@ -34,7 +34,7 @@ module odl-tcpmd5-netty-cfg {
 
         //base "netty:channel-factory";
         base "config:service-type";
-        config:java-class "org.opendaylight.bgpcep.tcpmd5.netty.MD5ChannelFactory";
+        config:java-class "org.opendaylight.tcpmd5.netty.MD5ChannelFactory";
     }
 
     identity md5-server-channel-factory {
@@ -43,7 +43,7 @@ module odl-tcpmd5-netty-cfg {
 
         //base "netty:channel-factory";
         base "config:service-type";
-        config:java-class "org.opendaylight.bgpcep.tcpmd5.netty.MD5ServerChannelFactory";
+        config:java-class "org.opendaylight.tcpmd5.netty.MD5ServerChannelFactory";
     }
 
     identity md5-server-channel-factory-impl {
