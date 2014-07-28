@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.opendaylight.tcpmd5</groupId>
+    <artifactId>tcpmd5-aggregator</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>features-tcpmd5</artifactId>
+  <name>TCPMD5 - Karaf Features</name>
+
+  <packaging>pom</packaging>
+
+  <properties>
+    <features.file>features.xml</features.file>
+  </properties>
+
+  <dependencies></dependencies>
+
+  <build>
+    <resources>
+      <resource>
+        <filtering>true</filtering>
+        <directory>src/main/resources</directory>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.karaf.tooling</groupId>
+        <artifactId>karaf-maven-plugin</artifactId>
+        <version>${karaf.version}</version>
+        <extensions>true</extensions>
+        <executions>
+          <execution>
+            <id>features-create-kar</id>
+            <goals>
+              <goal>features-create-kar</goal>
+            </goals>
+            <configuration>
+              <featuresFile>${project.build.directory}/classes/${features.file}</featuresFile>
+            </configuration>
+          </execution>
+        </executions>
+        <!-- There is no useful configuration for the kar mojo. The features-generate-descriptor mojo configuration may be useful -->
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>filter</id>
+            <goals>
+              <goal>resources</goal>
+            </goals>
+            <phase>generate-resources</phase>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+
