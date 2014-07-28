@@ -1,0 +1,10 @@
+<features name="odl-tcpmd5-${project.version}" xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.2.0 http://karaf.apache.org/xmlns/features/v1.2.0">
+<feature name="odl-tcpmd5" version="${project.version}">
+    <bundle>mvn:org.opendaylight.tcpmd5/tcpmd5-api/${project.version}</bundle>
+    <bundle>mvn:org.opendaylight.tcpmd5/tcpmd5-jni/${project.version}</bundle>
+    <bundle>mvn:org.opendaylight.tcpmd5/tcpmd5-netty/${project.version}</bundle>
+    <bundle>mvn:org.opendaylight.tcpmd5/tcpmd5-nio/${project.version}</bundle>
+    <bundle>mvn:org.opendaylight.tcpmd5/tcpmd5-nio/${project.version}</bundle>
+    <bundle>mvn:org.opendaylight.tcpmd5/tcpmd5-parent/${project.version}</bundle>
+</feature>
+</features>
