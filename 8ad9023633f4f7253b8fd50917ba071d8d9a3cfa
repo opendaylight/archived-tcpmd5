@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa82b9bf_2a51c735",
+        "filename": "feature/tcpmd5/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1788
+      },
+      "writtenOn": "2014-07-30T00:34:53Z",
+      "side": 1,
+      "message": "Should be features-tcpmd5 based off wiki page convention",
+      "revId": "8ad9023633f4f7253b8fd50917ba071d8d9a3cfa",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa82b9bf_ca437b6a",
+        "filename": "feature/tcpmd5/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1788
+      },
+      "writtenOn": "2014-07-30T00:34:53Z",
+      "side": 1,
+      "message": "Missing KAR packaging see project \"features/base\" in controller for proper pom file attachments..for KAR and XML file..",
+      "revId": "8ad9023633f4f7253b8fd50917ba071d8d9a3cfa",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa82b9bf_ea467f7a",
+        "filename": "feature/tcpmd5/src/main/resources/features.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1788
+      },
+      "writtenOn": "2014-07-30T00:34:53Z",
+      "side": 1,
+      "message": "Is this feature depending on Netty (if so install base-netty) as a dependency , md-sal? yangtools?... please identify the missing dependent features here as sub-features.",
+      "revId": "8ad9023633f4f7253b8fd50917ba071d8d9a3cfa",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
