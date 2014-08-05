@@ -29,6 +29,5 @@ public final class MD5SocketOptions {
     };
 
     private MD5SocketOptions() {
-        throw new UnsupportedOperationException("Utility class cannot be instatiated");
     }
 }
