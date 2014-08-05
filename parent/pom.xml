@@ -64,6 +64,7 @@
 
         <!-- Sonar config -->
         <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
+        <sonar.jacoco.reportPath>target/code-coverage/jacoco.exec</sonar.jacoco.reportPath>
     </properties>
 
     <dependencyManagement>
@@ -339,6 +340,9 @@
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
+                        <configuration>
+                            <destFile>${sonar.jacoco.reportPath}</destFile>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
