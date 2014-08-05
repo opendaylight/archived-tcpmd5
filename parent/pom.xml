@@ -61,6 +61,9 @@
         <controller.config.version>0.2.5-SNAPSHOT</controller.config.version>
         <controller.framework.version>0.5.0-SNAPSHOT</controller.framework.version>
         <controller.mdsal.version>1.1-SNAPSHOT</controller.mdsal.version>
+
+        <!-- Sonar config -->
+        <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
     </properties>
 
     <dependencyManagement>
