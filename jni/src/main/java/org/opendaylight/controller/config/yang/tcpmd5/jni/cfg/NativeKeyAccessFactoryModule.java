@@ -44,17 +44,17 @@ public class NativeKeyAccessFactoryModule extends
 
     @Override
     public java.lang.AutoCloseable createInstance() {
-        final KeyAccessFactory kaf = this.kaf;
+        final KeyAccessFactory localKaf = this.kaf;
 
         final class CloseableNativeKeyAccessFactory implements AutoCloseable, KeyAccessFactory {
             @Override
             public KeyAccess getKeyAccess(final Channel channel) {
-                return kaf.getKeyAccess(channel);
+                return localKaf.getKeyAccess(channel);
             }
 
             @Override
             public boolean canHandleChannelClass(final Class<? extends Channel> clazz) {
-                return kaf.canHandleChannelClass(clazz);
+                return localKaf.canHandleChannelClass(clazz);
             }
 
             @Override
@@ -62,7 +62,6 @@ public class NativeKeyAccessFactoryModule extends
                 // Nothing to do
             }
         }
-
         return new CloseableNativeKeyAccessFactory();
     }
 }
