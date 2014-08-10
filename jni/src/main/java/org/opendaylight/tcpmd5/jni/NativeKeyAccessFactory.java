@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 public final class NativeKeyAccessFactory implements KeyAccessFactory {
     private static final Logger LOG = LoggerFactory.getLogger(NativeKeyAccessFactory.class);
     private static final String LIBNAME = "libtcpmd5-jni.so";
-    private static NativeKeyAccessFactory INSTANCE = null;
+    private static NativeKeyAccessFactory instance = null;
 
     private final Map<Channel, KeyAccess> channels = new WeakHashMap<>();
 
@@ -47,12 +47,12 @@ public final class NativeKeyAccessFactory implements KeyAccessFactory {
      *         operational factory.
      */
     public static NativeKeyAccessFactory getInstance() throws NativeSupportUnavailableException {
-        if (INSTANCE != null) {
-            return INSTANCE;
+        if (instance != null) {
+            return instance;
         }
 
         synchronized (NativeKeyAccessFactory.class) {
-            if (INSTANCE == null) {
+            if (instance == null) {
                 try {
                     loadLibrary();
                 } catch (IOException | RuntimeException e) {
@@ -65,9 +65,9 @@ public final class NativeKeyAccessFactory implements KeyAccessFactory {
                 }
 
                 LOG.debug("Run-time found {} supported channel classes", rt);
-                INSTANCE = new NativeKeyAccessFactory();
+                instance = new NativeKeyAccessFactory();
             }
-            return INSTANCE;
+            return instance;
         }
     }
 
