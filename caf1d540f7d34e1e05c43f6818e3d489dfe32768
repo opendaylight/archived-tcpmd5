@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa82b9bf_24b8fd28",
+        "filename": "feature/tcpmd5/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2014-08-13T21:19:42Z",
+      "side": 1,
+      "message": "please make sure to add a copyright header, vi modeline (see other pom.xmls) and keep indentation at four spaces.",
+      "revId": "caf1d540f7d34e1e05c43f6818e3d489dfe32768",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
