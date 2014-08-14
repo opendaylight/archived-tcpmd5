@@ -89,6 +89,7 @@ public class MD5NioSocketChannel extends AbstractNioByteChannel implements io.ne
 
     @Override
     public boolean isInputShutdown() {
+        // Needed to un-hide the super implementation, which is protected
         return super.isInputShutdown();
     }
 

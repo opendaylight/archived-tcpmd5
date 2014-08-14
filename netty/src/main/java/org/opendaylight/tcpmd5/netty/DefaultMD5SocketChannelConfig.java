@@ -155,11 +155,10 @@ public class DefaultMD5SocketChannelConfig extends DefaultSocketChannelConfig im
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public <T> T getOption(final ChannelOption<T> option) {
         if (option == MD5ChannelOption.TCP_MD5SIG) {
-            @SuppressWarnings("unchecked")
-            final T ret = (T) keyAccess.getKeys();
-            return ret;
+            return (T) keyAccess.getKeys();
         }
 
         return super.getOption(option);

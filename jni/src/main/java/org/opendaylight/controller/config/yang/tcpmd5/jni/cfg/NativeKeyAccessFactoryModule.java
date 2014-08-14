@@ -15,7 +15,7 @@ import org.opendaylight.tcpmd5.jni.NativeKeyAccessFactory;
 import org.opendaylight.tcpmd5.jni.NativeSupportUnavailableException;
 
 /**
- * Service representing a way for accessing key informtion.
+ * Service representing a way for accessing key information.
  */
 public class NativeKeyAccessFactoryModule extends
         org.opendaylight.controller.config.yang.tcpmd5.jni.cfg.AbstractNativeKeyAccessFactoryModule {
@@ -44,17 +44,17 @@ public class NativeKeyAccessFactoryModule extends
 
     @Override
     public java.lang.AutoCloseable createInstance() {
-        final KeyAccessFactory kaf = this.kaf;
+        final KeyAccessFactory f = this.kaf;
 
         final class CloseableNativeKeyAccessFactory implements AutoCloseable, KeyAccessFactory {
             @Override
             public KeyAccess getKeyAccess(final Channel channel) {
-                return kaf.getKeyAccess(channel);
+                return f.getKeyAccess(channel);
             }
 
             @Override
             public boolean canHandleChannelClass(final Class<? extends Channel> clazz) {
-                return kaf.canHandleChannelClass(clazz);
+                return f.canHandleChannelClass(clazz);
             }
 
             @Override
