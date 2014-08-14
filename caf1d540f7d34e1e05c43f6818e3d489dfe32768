@@ -16,6 +16,24 @@
       "revId": "caf1d540f7d34e1e05c43f6818e3d489dfe32768",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa82b9bf_264ec23b",
+        "filename": "feature/tcpmd5/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1788
+      },
+      "writtenOn": "2014-08-14T14:08:30Z",
+      "side": 1,
+      "message": "Indeed... thank Robert for these additions.. I will make sure patches are reviewed today..",
+      "parentUuid": "fa82b9bf_24b8fd28",
+      "revId": "caf1d540f7d34e1e05c43f6818e3d489dfe32768",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
