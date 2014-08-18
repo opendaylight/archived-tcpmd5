@@ -9,7 +9,6 @@
 package org.opendaylight.tcpmd5.jni;
 
 import com.google.common.base.Preconditions;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.channels.Channel;
@@ -21,7 +20,6 @@ import java.nio.file.attribute.PosixFilePermissions;
 import java.util.Map;
 import java.util.Set;
 import java.util.WeakHashMap;
-
 import org.opendaylight.tcpmd5.api.KeyAccess;
 import org.opendaylight.tcpmd5.api.KeyAccessFactory;
 import org.slf4j.Logger;
@@ -113,8 +111,12 @@ public final class NativeKeyAccessFactory implements KeyAccessFactory {
 
                 Files.copy(is, p, StandardCopyOption.REPLACE_EXISTING);
 
-                Runtime.getRuntime().load(p.toString());
-                LOG.info("Library {} loaded", p);
+                try {
+                    Runtime.getRuntime().load(p.toString());
+                    LOG.info("Library {} loaded", p);
+                } catch (UnsatisfiedLinkError e) {
+                    throw new IOException("Appropriate file was not found.", e);
+                }
             } finally {
                 try {
                     Files.deleteIfExists(p);
