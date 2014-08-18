@@ -10,10 +10,12 @@ package org.opendaylight.tcpmd5.jni;
 
 import com.google.common.base.Preconditions;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.channels.Channel;
 import java.nio.file.Files;
+import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.PosixFilePermission;
@@ -112,6 +114,10 @@ public final class NativeKeyAccessFactory implements KeyAccessFactory {
                 LOG.debug("Copying {} to {}", is, p);
 
                 Files.copy(is, p, StandardCopyOption.REPLACE_EXISTING);
+
+                if (!Files.exists(p, new LinkOption[0])) {
+                	throw new FileNotFoundException("File " + p.toString() + " was not found.");
+                }
 
                 Runtime.getRuntime().load(p.toString());
                 LOG.info("Library {} loaded", p);
