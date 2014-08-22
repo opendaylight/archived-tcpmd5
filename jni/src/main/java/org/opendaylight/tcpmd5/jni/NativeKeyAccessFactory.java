@@ -53,12 +53,12 @@ public final class NativeKeyAccessFactory implements KeyAccessFactory {
                 try {
                     loadLibrary();
                 } catch (IOException | RuntimeException e) {
-                    throw new NativeSupportUnavailableException("Failed to load library", e);
+                    throw new NativeSupportUnavailableException("Failed to load native library. Is it present and are you running a supported operating system?", e);
                 }
 
                 int rt = NarSystem.runUnitTests();
                 if (rt == 0) {
-                    throw new NativeSupportUnavailableException("Run-time does not support required functionality");
+                    throw new NativeSupportUnavailableException("Run-time does not support required functionality. Is your operating system configured correcty?");
                 }
 
                 LOG.debug("Run-time found {} supported channel classes", rt);
