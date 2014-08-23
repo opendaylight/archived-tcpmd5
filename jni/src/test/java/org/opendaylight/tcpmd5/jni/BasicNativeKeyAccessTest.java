@@ -8,11 +8,14 @@
 package org.opendaylight.tcpmd5.jni;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.net.InetAddress;
 import java.nio.channels.Channel;
+import java.nio.channels.DatagramChannel;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Collections;
@@ -23,7 +26,6 @@ import org.junit.Test;
 import org.opendaylight.tcpmd5.api.KeyAccess;
 import org.opendaylight.tcpmd5.api.KeyAccessFactory;
 import org.opendaylight.tcpmd5.api.KeyMapping;
-import org.opendaylight.tcpmd5.jni.NativeKeyAccessFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -106,5 +108,29 @@ public class BasicNativeKeyAccessTest {
         final KeyMapping map = new KeyMapping();
         map.put(InetAddress.getLocalHost(), new byte[81]);
         ka.setKeys(map);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNullAddress() throws IOException {
+        final KeyAccess ka = factory.getKeyAccess(channel);
+        final KeyMapping map = new KeyMapping();
+        map.put(null, new byte[8]);
+        ka.setKeys(map);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNullKey() throws IOException {
+        final KeyAccess ka = factory.getKeyAccess(channel);
+        final KeyMapping map = new KeyMapping();
+        map.put(InetAddress.getLocalHost(), null);
+        ka.setKeys(map);
+    }
+
+    @Test
+    public void testUnsupportedChannel() throws IOException {
+        try (Channel dc = DatagramChannel.open()) {
+            assertFalse(factory.canHandleChannelClass(dc.getClass()));
+            assertNull(factory.getKeyAccess(dc));
+        }
     }
 }
