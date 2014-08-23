@@ -9,6 +9,7 @@
 package org.opendaylight.tcpmd5.jni;
 
 import com.google.common.base.Preconditions;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.channels.Channel;
@@ -20,6 +21,7 @@ import java.nio.file.attribute.PosixFilePermissions;
 import java.util.Map;
 import java.util.Set;
 import java.util.WeakHashMap;
+
 import org.opendaylight.tcpmd5.api.KeyAccess;
 import org.opendaylight.tcpmd5.api.KeyAccessFactory;
 import org.slf4j.Logger;
@@ -96,40 +98,37 @@ public final class NativeKeyAccessFactory implements KeyAccessFactory {
         return true;
     }
 
-    private static void loadLibrary() throws IOException {
-        final InputStream is = NativeKeyAccessFactory.class.getResourceAsStream('/' + LIBNAME);
-        if (is == null) {
-            throw new IOException(String.format("Failed to open library resource %s", LIBNAME));
-        }
+    private static void loadStream(final InputStream is) throws IOException {
+        final Set<PosixFilePermission> perms = PosixFilePermissions.fromString("rwxr-x---");
+        final Path p = Files.createTempFile(LIBNAME, null, PosixFilePermissions.asFileAttribute(perms));
 
         try {
-            final Set<PosixFilePermission> perms = PosixFilePermissions.fromString("rwxr-x---");
-            final Path p = Files.createTempFile(LIBNAME, null, PosixFilePermissions.asFileAttribute(perms));
+            LOG.debug("Copying {} to {}", is, p);
+
+            Files.copy(is, p, StandardCopyOption.REPLACE_EXISTING);
 
             try {
-                LOG.debug("Copying {} to {}", is, p);
-
-                Files.copy(is, p, StandardCopyOption.REPLACE_EXISTING);
-
-                try {
-                    Runtime.getRuntime().load(p.toString());
-                    LOG.info("Library {} loaded", p);
-                } catch (UnsatisfiedLinkError e) {
-                    throw new IOException("Appropriate file was not found.", e);
-                }
-            } finally {
-                try {
-                    Files.deleteIfExists(p);
-                } catch (IOException e) {
-                    LOG.warn("Failed to remove temporary file {}", p, e);
-                }
+                Runtime.getRuntime().load(p.toString());
+                LOG.info("Library {} loaded", p);
+            } catch (UnsatisfiedLinkError e) {
+                throw new IOException(String.format("Failed to load library %s", p), e);
             }
         } finally {
             try {
-                is.close();
+                Files.deleteIfExists(p);
             } catch (IOException e) {
-                LOG.warn("Failed to close library input stream", e);
+                LOG.warn("Failed to remove temporary file {}", p, e);
             }
+        }
+    }
+
+    private static void loadLibrary() throws IOException {
+        try (final InputStream is = NativeKeyAccessFactory.class.getResourceAsStream('/' + LIBNAME)) {
+            if (is == null) {
+                throw new IOException(String.format("Failed to open library resource %s", LIBNAME));
+            }
+
+            loadStream(is);
         }
     }
 }
