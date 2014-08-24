@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa82b9bf_b70bd3d4",
+        "filename": "jni/src/main/java/org/opendaylight/tcpmd5/jni/NativeKeyAccessFactory.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 637
+      },
+      "writtenOn": "2014-08-24T09:10:30Z",
+      "side": 1,
+      "message": "Include the \u0027platform specific check\u0027 .",
+      "revId": "ebb2f2f29067fff349b7d2330b0ec65dc6617866",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
