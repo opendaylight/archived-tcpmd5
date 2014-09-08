@@ -7,7 +7,6 @@
  */
 package org.opendaylight.tcpmd5.nio;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
@@ -30,7 +29,7 @@ import org.opendaylight.tcpmd5.api.KeyAccessFactory;
 import org.opendaylight.tcpmd5.api.KeyMapping;
 import org.opendaylight.tcpmd5.api.MD5SocketOptions;
 
-public class MD5SocketChannelTest {
+public class MD5ServerSocketChannelTest {
     @Mock
     private KeyAccessFactory keyAccessFactory;
     @Mock
@@ -47,12 +46,9 @@ public class MD5SocketChannelTest {
 
     @Test
     public void testCreate() throws IOException {
-        try (final MD5SocketChannel sc = MD5SocketChannel.open(keyAccessFactory)) {
+        try (final MD5ServerSocketChannel sc = MD5ServerSocketChannel.open(keyAccessFactory)) {
             assertNotNull(sc.getDelegate());
             assertNull(sc.getLocalAddress());
-            assertNull(sc.getRemoteAddress());
-            assertFalse(sc.isConnected());
-            assertFalse(sc.isConnectionPending());
             assertNotNull(sc.socket());
 
             final Set<SocketOption<?>> s = sc.supportedOptions();
@@ -65,7 +61,7 @@ public class MD5SocketChannelTest {
 
     @Test
     public void testGetKey() throws IOException {
-        try (final MD5SocketChannel sc = MD5SocketChannel.open(keyAccessFactory)) {
+        try (final MD5ServerSocketChannel sc = MD5ServerSocketChannel.open(keyAccessFactory)) {
 
             assertNull(sc.getOption(MD5SocketOptions.TCP_MD5SIG));
         }
@@ -79,7 +75,7 @@ public class MD5SocketChannelTest {
         final KeyMapping map = new KeyMapping();
         map.put(InetAddress.getLoopbackAddress(), new byte[] { 1, 2, 3 });
 
-        try (final MD5SocketChannel sc = MD5SocketChannel.open(keyAccessFactory)) {
+        try (final MD5ServerSocketChannel sc = MD5ServerSocketChannel.open(keyAccessFactory)) {
             assertSame(sc, sc.setOption(MD5SocketOptions.TCP_MD5SIG, map));
         }
 
