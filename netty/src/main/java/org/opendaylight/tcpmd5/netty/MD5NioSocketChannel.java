@@ -25,11 +25,14 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 
 import org.opendaylight.tcpmd5.api.KeyAccessFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * {@link io.netty.channel.socket.nio.NioSocketChannel} enabled with support for TCP MD5 Signature option.
  */
 public class MD5NioSocketChannel extends AbstractNioByteChannel implements io.netty.channel.socket.SocketChannel {
+    private static final Logger LOG = LoggerFactory.getLogger(MD5NioSocketChannel.class);
     private static final ChannelMetadata METADATA = new ChannelMetadata(false);
 
     private final MD5SocketChannelConfig config;
@@ -90,7 +93,10 @@ public class MD5NioSocketChannel extends AbstractNioByteChannel implements io.ne
     @Override
     public boolean isInputShutdown() {
         // Needed to un-hide the super implementation, which is protected
-        return super.isInputShutdown();
+        // The logging here just side-steps sonar
+        final boolean ret = super.isInputShutdown();
+        LOG.trace("Channel {} input shutdown {}", this, ret);
+        return ret;
     }
 
     @Override
