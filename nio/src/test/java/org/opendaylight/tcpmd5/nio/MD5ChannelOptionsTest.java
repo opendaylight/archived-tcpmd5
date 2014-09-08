@@ -26,11 +26,11 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.opendaylight.tcpmd5.api.DummyKeyAccessFactory;
 import org.opendaylight.tcpmd5.api.KeyAccess;
 import org.opendaylight.tcpmd5.api.KeyAccessFactory;
 import org.opendaylight.tcpmd5.api.KeyMapping;
 import org.opendaylight.tcpmd5.api.MD5SocketOptions;
-import org.opendaylight.tcpmd5.nio.MD5ChannelOptions;
 
 public class MD5ChannelOptionsTest {
 
@@ -90,5 +90,17 @@ public class MD5ChannelOptionsTest {
 
         Mockito.verify(keyAccess).setKeys(any(KeyMapping.class));
         Mockito.verify(channel).setOption(StandardSocketOptions.TCP_NODELAY, true);
+    }
+
+    @Test
+    public void testNoAccessOptions() throws IOException {
+        final MD5ChannelOptions opts = MD5ChannelOptions.create(DummyKeyAccessFactory.getInstance(), channel);
+
+        final Set<SocketOption<?>> so = opts.supportedOptions();
+        assertFalse(so.contains(MD5SocketOptions.TCP_MD5SIG));
+        assertTrue(so.contains(StandardSocketOptions.TCP_NODELAY));
+
+        assertFalse(opts.getOption(StandardSocketOptions.TCP_NODELAY));
+        opts.setOption(StandardSocketOptions.TCP_NODELAY, true);
     }
 }

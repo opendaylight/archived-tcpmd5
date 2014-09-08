@@ -51,17 +51,17 @@ public final class MD5SelectorProvider extends SelectorProvider {
     }
 
     @Override
-    public DatagramChannel openDatagramChannel() throws IOException {
+    public DatagramChannel openDatagramChannel() {
         throw new UnsupportedOperationException("Datagram channels are not supported");
     }
 
     @Override
-    public DatagramChannel openDatagramChannel(final ProtocolFamily family) throws IOException {
+    public DatagramChannel openDatagramChannel(final ProtocolFamily family) {
         throw new UnsupportedOperationException("Datagram channels are not supported");
     }
 
     @Override
-    public Pipe openPipe() throws IOException {
+    public Pipe openPipe() {
         throw new UnsupportedOperationException("Pipes are not supported");
     }
 
