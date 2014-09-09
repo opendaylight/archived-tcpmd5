@@ -9,6 +9,9 @@ package org.opendaylight.tcpmd5;
 
 import static org.junit.Assert.assertEquals;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 import org.junit.Test;
 import org.opendaylight.tcpmd5.api.KeyMapping;
 import org.opendaylight.tcpmd5.api.MD5SocketOptions;
@@ -25,4 +28,15 @@ public class MD5SocketOptionsTest {
         assertEquals(KeyMapping.class, MD5SocketOptions.TCP_MD5SIG.type());
     }
 
+    @Test(expected=UnsupportedOperationException.class)
+    public void testConstructor() throws Throwable {
+        final Constructor<MD5SocketOptions> c = MD5SocketOptions.class.getDeclaredConstructor();
+        c.setAccessible(true);
+
+        try {
+            c.newInstance();
+        } catch (InvocationTargetException ex) {
+            throw ex.getCause();
+        }
+    }
 }

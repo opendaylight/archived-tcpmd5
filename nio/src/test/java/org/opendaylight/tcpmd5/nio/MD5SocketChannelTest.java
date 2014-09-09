@@ -17,7 +17,10 @@ import static org.mockito.Matchers.any;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.SocketOption;
+import java.nio.ByteBuffer;
 import java.nio.channels.NetworkChannel;
+import java.nio.channels.NoConnectionPendingException;
+import java.nio.channels.NotYetConnectedException;
 import java.util.Set;
 
 import org.junit.Before;
@@ -35,6 +38,8 @@ public class MD5SocketChannelTest {
     private KeyAccessFactory keyAccessFactory;
     @Mock
     private KeyAccess keyAccess;
+
+    private final ByteBuffer buf = ByteBuffer.allocate(0);
 
     @Before
     public void setup() throws IOException {
@@ -85,5 +90,85 @@ public class MD5SocketChannelTest {
 
         Mockito.verify(keyAccessFactory).getKeyAccess(any(NetworkChannel.class));
         Mockito.verify(keyAccess).setKeys(map);
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void testConstructor() throws IOException {
+        new MD5SocketChannel(null).close();
+    }
+
+    @Test
+    public void testOpen() throws IOException {
+        MD5SocketChannel.open().close();
+    }
+
+    @Test
+    public void testBind() throws IOException {
+        try (MD5SocketChannel sc = MD5SocketChannel.open()) {
+            sc.bind(null);
+        }
+    }
+
+    @Test
+    public void testBlocking() throws IOException {
+        try (MD5SocketChannel sc = MD5SocketChannel.open()) {
+            sc.implConfigureBlocking(true);
+        }
+    }
+
+    @Test(expected=NotYetConnectedException.class)
+    public void testShutdownInput() throws IOException {
+        try (MD5SocketChannel sc = MD5SocketChannel.open()) {
+            sc.shutdownOutput();
+        }
+    }
+
+    @Test(expected=NotYetConnectedException.class)
+    public void testShutdownOutput() throws IOException {
+        try (MD5SocketChannel sc = MD5SocketChannel.open()) {
+            sc.shutdownOutput();
+        }
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void testConnect() throws IOException {
+        try (MD5SocketChannel sc = MD5SocketChannel.open()) {
+            sc.connect(null);
+        }
+    }
+
+    @Test(expected=NoConnectionPendingException.class)
+    public void testFinishConnect() throws IOException {
+        try (MD5SocketChannel sc = MD5SocketChannel.open()) {
+            sc.finishConnect();
+        }
+    }
+
+    @Test(expected=NotYetConnectedException.class)
+    public void testRead() throws IOException {
+        try (MD5SocketChannel sc = MD5SocketChannel.open()) {
+            sc.read(buf);
+        }
+    }
+
+    @Test(expected=NotYetConnectedException.class)
+    public void testReadOffset() throws IOException {
+        try (MD5SocketChannel sc = MD5SocketChannel.open()) {
+            sc.read(new ByteBuffer[0], 0, 0);
+        }
+    }
+
+    @Test(expected=NotYetConnectedException.class)
+    public void testWrite() throws IOException {
+        try (MD5SocketChannel sc = MD5SocketChannel.open()) {
+            sc.write(buf);
+        }
+    }
+
+    @Test(expected=NotYetConnectedException.class)
+    public void testWriteOffset() throws IOException {
+        try (MD5SocketChannel sc = MD5SocketChannel.open()) {
+            sc.write(new ByteBuffer[0], 0, 0);
+        }
     }
 }

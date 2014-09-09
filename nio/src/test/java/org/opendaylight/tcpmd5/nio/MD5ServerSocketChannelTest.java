@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.SocketOption;
 import java.nio.channels.NetworkChannel;
+import java.nio.channels.NotYetBoundException;
 import java.util.Set;
 
 import org.junit.Before;
@@ -81,5 +82,36 @@ public class MD5ServerSocketChannelTest {
 
         Mockito.verify(keyAccessFactory).getKeyAccess(any(NetworkChannel.class));
         Mockito.verify(keyAccess).setKeys(map);
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void testConstructor() throws IOException {
+        new MD5ServerSocketChannel(null).close();
+    }
+
+    @Test
+    public void testOpen() throws IOException {
+        MD5ServerSocketChannel.open().close();
+    }
+
+    @Test(expected=NotYetBoundException.class)
+    public void testAccept() throws IOException {
+        try (MD5ServerSocketChannel sc = MD5ServerSocketChannel.open()) {
+            sc.accept();
+        }
+    }
+
+    @Test
+    public void testBind() throws IOException {
+        try (MD5ServerSocketChannel sc = MD5ServerSocketChannel.open()) {
+            sc.bind(null);
+        }
+    }
+
+    @Test
+    public void testBlocking() throws IOException {
+        try (MD5ServerSocketChannel sc = MD5ServerSocketChannel.open()) {
+            sc.implConfigureBlocking(true);
+        }
     }
 }
