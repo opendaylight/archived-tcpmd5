@@ -49,6 +49,9 @@ public class BasicNativeKeyAccessTest {
         ka.setKeys(key1);
         assertEquals(key1, ka.getKeys());
 
+        ka.setKeys(key1);
+        assertEquals(key1, ka.getKeys());
+
         final KeyMapping key2 = new KeyMapping();
         key2.put(InetAddress.getLocalHost(), KEY2);
         LOG.debug("Setting key {}", KEY2);
