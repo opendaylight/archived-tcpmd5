@@ -115,6 +115,25 @@
                 <version>${logback.version}</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>org.opendaylight.controller</groupId>
+                <artifactId>config-manager</artifactId>
+                <type>test-jar</type>
+                <version>${controller.config.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.opendaylight.controller</groupId>
+                <artifactId>config-manager</artifactId>
+                <version>${controller.config.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.opendaylight.controller</groupId>
+                <artifactId>config-util</artifactId>
+                <version>${controller.config.version}</version>
+                <scope>test</scope>
+            </dependency>
 
             <!-- YANG tools -->
             <dependency>
