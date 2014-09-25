@@ -7,14 +7,43 @@
  terms of the Eclipse Public License v1.0 which accompanies this distribution,
  and is available at http://www.eclipse.org/legal/epl-v10.html
 -->
-<features name="odl-tcpmd5-${project.version}" xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.2.0 http://karaf.apache.org/xmlns/features/v1.2.0">
-    <feature name="odl-tcpmd5" version="${project.version}">
-        <feature>base-netty</feature>
+<features name="odl-bgpcep-${project.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.2.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.2.0 http://karaf.apache.org/xmlns/features/v1.2.0">
+
+    <repository>mvn:org.opendaylight.yangtools/features-yangtools/${yangtools.version}/xml/features</repository>
+
+    <feature name='odl-tcpmd5-all' version='${project.version}'>
+        <feature version='${project.version}'>odl-tcpmd5-base</feature>
+        <feature version='${project.version}'>odl-tcpmd5-nio</feature>
+        <feature version='${project.version}'>odl-tcpmd5-netty</feature>
+    </feature>
+
+    <feature name="odl-tcpmd5-base" version="${project.version}">
+        <feature version='${yangtools.version}'>odl-yangtools-binding</feature>
+        <feature version='${yangtools.version}'>odl-yangtools-common</feature>
+
+        <bundle>mvn:com.google.guava/guava/${guava.version}</bundle>
         <bundle>mvn:org.opendaylight.tcpmd5/tcpmd5-api/${project.version}</bundle>
         <bundle>mvn:org.opendaylight.tcpmd5/tcpmd5-jni/${project.version}</bundle>
+        <bundle>mvn:org.opendaylight.controller/config-api/${config.version}</bundle>
+    </feature>
+
+    <feature name="odl-tcpmd5-netty" version="${project.version}">
+        <feature version='${project.version}'>odl-tcpmd5-base</feature>
+
+        <bundle>mvn:io.netty/netty-buffer/${netty.version}</bundle>
+        <bundle>mvn:io.netty/netty-common/${netty.version}</bundle>
+        <bundle>mvn:io.netty/netty-transport/${netty.version}</bundle>
         <bundle>mvn:org.opendaylight.tcpmd5/tcpmd5-netty/${project.version}</bundle>
+        <bundle>mvn:org.opendaylight.controller/netty-config-api/${config.version}</bundle>
+
+        <configfile finalname="etc/opendaylight/karaf/20-tcpmd5.xml">mvn:org.opendaylight.tcpmd5/tcpmd5-controller-config/${project.version}/xml/config</configfile>
+    </feature>
+
+    <feature name="odl-tcpmd5-nio" version="${project.version}">
+        <feature version='${project.version}'>odl-tcpmd5-base</feature>
+
         <bundle>mvn:org.opendaylight.tcpmd5/tcpmd5-nio/${project.version}</bundle>
-        <bundle>mvn:org.opendaylight.tcpmd5/tcpmd5-nio/${project.version}</bundle>
-        <bundle>mvn:org.opendaylight.tcpmd5/tcpmd5-parent/${project.version}</bundle>
     </feature>
 </features>

@@ -11,19 +11,56 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.opendaylight.tcpmd5</groupId>
-        <artifactId>tcpmd5-aggregator</artifactId>
+        <artifactId>tcpmd5-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../parent</relativePath>
     </parent>
     <artifactId>features-tcpmd5</artifactId>
     <name>TCPMD5 - Karaf Features</name>
 
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <properties>
         <features.file>features.xml</features.file>
+        <commons.opendaylight.version>1.4.2-SNAPSHOT</commons.opendaylight.version>
+        <config.version>0.2.5-SNAPSHOT</config.version>
+        <yangtools.version>0.6.2-SNAPSHOT</yangtools.version>
     </properties>
 
-    <dependencies></dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.opendaylight.tcpmd5</groupId>
+            <artifactId>tcpmd5-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- test to validate features.xml -->
+        <dependency>
+            <groupId>org.opendaylight.yangtools</groupId>
+            <artifactId>features-test</artifactId>
+            <version>${yangtools.version}</version>
+        </dependency>
+
+        <!-- dependency for opendaylight-karaf-empty for use by testing -->
+        <dependency>
+            <groupId>org.opendaylight.controller</groupId>
+            <artifactId>opendaylight-karaf-empty</artifactId>
+            <version>${commons.opendaylight.version}</version>
+            <type>zip</type>
+        </dependency>
+
+        <!-- other dependencies -->
+        <dependency>
+            <groupId>org.opendaylight.controller</groupId>
+            <artifactId>config-api</artifactId>
+            <version>${config.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.controller</groupId>
+            <artifactId>netty-config-api</artifactId>
+            <version>${config.version}</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <resources>
@@ -33,24 +70,6 @@
             </resource>
         </resources>
         <plugins>
-            <plugin>
-                <groupId>org.apache.karaf.tooling</groupId>
-                <artifactId>karaf-maven-plugin</artifactId>
-                <version>${karaf.version}</version>
-                <extensions>true</extensions>
-                <executions>
-                    <execution>
-                        <id>features-create-kar</id>
-                        <goals>
-                            <goal>features-create-kar</goal>
-                        </goals>
-                        <configuration>
-                            <featuresFile>${project.build.directory}/classes/${features.file}</featuresFile>
-                        </configuration>
-                    </execution>
-                </executions>
-                <!-- There is no useful configuration for the kar mojo. The features-generate-descriptor mojo configuration may be useful -->
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -63,6 +82,42 @@
                         <phase>generate-resources</phase>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-artifacts</id>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <artifacts>
+                                <artifact>
+                                    <file>${project.build.directory}/classes/${features.file}</file>
+                                    <type>xml</type>
+                                    <classifier>features</classifier>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <systemPropertyVariables>
+                        <karaf.distro.groupId>org.opendaylight.controller</karaf.distro.groupId>
+                        <karaf.distro.artifactId>opendaylight-karaf-empty</karaf.distro.artifactId>
+                        <karaf.distro.version>${commons.opendaylight.version}</karaf.distro.version>
+                    </systemPropertyVariables>
+                    <dependenciesToScan>
+                        <dependency>org.opendaylight.yangtools:features-test</dependency>
+                    </dependenciesToScan>
+                </configuration>
             </plugin>
         </plugins>
     </build>

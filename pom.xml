@@ -40,6 +40,7 @@
         <module>netty</module>
         <module>nio</module>
         <module>parent</module>
+        <module>feature/tcpmd5</module>
     </modules>
 
 </project>
