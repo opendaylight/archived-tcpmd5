@@ -22,9 +22,9 @@
 
     <properties>
         <features.file>features.xml</features.file>
-        <commons.opendaylight.version>1.4.2-SNAPSHOT</commons.opendaylight.version>
-        <config.version>0.2.5-SNAPSHOT</config.version>
-        <yangtools.version>0.6.2-SNAPSHOT</yangtools.version>
+        <commons.opendaylight.version>1.5.0-SNAPSHOT</commons.opendaylight.version>
+        <config.version>0.3.0-SNAPSHOT</config.version>
+        <yangtools.version>0.7.0-SNAPSHOT</yangtools.version>
     </properties>
 
     <dependencies>
