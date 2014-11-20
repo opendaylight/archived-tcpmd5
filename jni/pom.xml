@@ -30,7 +30,7 @@
     <properties>
         <nar.groupId>com.github.maven-nar</nar.groupId>
         <nar.version>3.1.0</nar.version>
-        <copy.version>0.2.5</copy.version>
+        <copy.version>1.0</copy.version>
     </properties>
 
     <dependencies>
@@ -100,8 +100,8 @@
             </plugin>
 
             <plugin>
-                <groupId>com.github.goldin</groupId>
-                <artifactId>copy-maven-plugin</artifactId>
+                <groupId>com.coderplus.maven.plugins</groupId>
+                <artifactId>copy-rename-maven-plugin</artifactId>
                 <version>${copy.version}</version>
                 <executions>
                     <execution>
@@ -111,13 +111,8 @@
                             <goal>copy</goal>
                         </goals>
                         <configuration>
-                            <resources>
-                                <resource>
-                                    <targetPath>${project.build.outputDirectory}</targetPath>
-                                    <file>${project.build.directory}/nar/tcpmd5-jni-${project.version}-amd64-Linux-gpp-jni/lib/amd64-Linux-gpp/jni/libtcpmd5-jni-${project.version}.so</file>
-                                    <destFileName>libtcpmd5-jni.so</destFileName>
-                                </resource>
-                            </resources>
+                            <sourceFile>${project.build.directory}/nar/tcpmd5-jni-${project.version}-amd64-Linux-gpp-jni/lib/amd64-Linux-gpp/jni/libtcpmd5-jni-${project.version}.so</sourceFile>
+                            <destinationFile>${project.build.outputDirectory}/libtcpmd5-jni.so</destinationFile>
                         </configuration>
                     </execution>
                 </executions>
