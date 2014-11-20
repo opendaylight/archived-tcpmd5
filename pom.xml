@@ -35,12 +35,13 @@
 
     <modules>
         <module>api</module>
+        <module>artifacts</module>
         <module>controller-config</module>
+        <module>feature/tcpmd5</module>
         <module>jni</module>
         <module>netty</module>
         <module>nio</module>
         <module>parent</module>
-        <module>feature/tcpmd5</module>
     </modules>
 
 </project>

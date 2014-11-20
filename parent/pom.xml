@@ -50,14 +50,9 @@
 
         <!-- YANG tools artifacts -->
         <yangtools.version>0.7.0-SNAPSHOT</yangtools.version>
-        <ietf.types.version>2010.09.24.7-SNAPSHOT</ietf.types.version>
-        <ietf.topology.version>2013.10.21.7-SNAPSHOT</ietf.topology.version>
-        <yang-ext.version>2013.09.07.7-SNAPSHOT</yang-ext.version>
 
         <!-- Controller artifacts -->
         <controller.config.version>0.3.0-SNAPSHOT</controller.config.version>
-        <controller.framework.version>0.6.0-SNAPSHOT</controller.framework.version>
-        <controller.mdsal.version>1.2.0-SNAPSHOT</controller.mdsal.version>
 
         <!-- Sonar config -->
         <sonar-jacoco-listeners.version>2.4</sonar-jacoco-listeners.version>
@@ -71,92 +66,37 @@
         <dependencies>
             <!-- This project -->
             <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>tcpmd5-api</artifactId>
+                <groupId>org.opendaylight.tcpmd5</groupId>
+                <artifactId>tcpmd5-artifacts</artifactId>
                 <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>tcpmd5-jni</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>tcpmd5-netty</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>tcpmd5-nio</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>tcpmd5-jni</artifactId>
-                <version>${project.version}</version>
-                <type>nar</type>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>tcpmd5-controller-config</artifactId>
-                <version>${project.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
             </dependency>
 
             <!-- Testing Dependencies -->
-            <dependency>
-                <groupId>org.opendaylight.yangtools</groupId>
-                <artifactId>mockito-configuration</artifactId>
-                <version>${yangtools.version}</version>
-                <scope>test</scope>
-            </dependency>
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
                 <scope>test</scope>
             </dependency>
-            <dependency>
-                <groupId>org.opendaylight.controller</groupId>
-                <artifactId>config-manager</artifactId>
-                <type>test-jar</type>
-                <version>${controller.config.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.opendaylight.controller</groupId>
-                <artifactId>config-manager</artifactId>
-                <version>${controller.config.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.opendaylight.controller</groupId>
-                <artifactId>config-util</artifactId>
-                <version>${controller.config.version}</version>
-                <scope>test</scope>
-            </dependency>
 
             <!-- YANG tools -->
             <dependency>
                 <groupId>org.opendaylight.yangtools</groupId>
-                <artifactId>yang-binding</artifactId>
+                <artifactId>yangtools-artifacts</artifactId>
                 <version>${yangtools.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.opendaylight.yangtools</groupId>
-                <artifactId>yang-common</artifactId>
-                <version>${yangtools.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
             </dependency>
 
             <!-- Controller infrastructure -->
             <dependency>
                 <groupId>org.opendaylight.controller</groupId>
-                <artifactId>config-api</artifactId>
+                <artifactId>config-artifacts</artifactId>
                 <version>${controller.config.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.opendaylight.controller</groupId>
-                <artifactId>netty-config-api</artifactId>
-                <version>${controller.config.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -102,7 +102,7 @@
             <plugin>
                 <groupId>com.github.goldin</groupId>
                 <artifactId>copy-maven-plugin</artifactId>
-                <version>0.2.5</version>
+                <version>${copy.version}</version>
                 <executions>
                     <execution>
                         <id>copy-native</id>
