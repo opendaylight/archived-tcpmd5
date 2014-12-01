@@ -31,27 +31,22 @@
         <dependency>
             <groupId>org.opendaylight.tcpmd5</groupId>
             <artifactId>tcpmd5-api</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.opendaylight.tcpmd5</groupId>
             <artifactId>tcpmd5-jni</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.opendaylight.tcpmd5</groupId>
             <artifactId>tcpmd5-netty</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.opendaylight.tcpmd5</groupId>
             <artifactId>tcpmd5-nio</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.opendaylight.tcpmd5</groupId>
             <artifactId>tcpmd5-controller-config</artifactId>
-            <version>${project.version}</version>
             <type>xml</type>
             <classifier>config</classifier>
         </dependency>
@@ -61,7 +56,6 @@
             <artifactId>features-yangtools</artifactId>
             <classifier>features</classifier>
             <type>xml</type>
-            <version>${yangtools.version}</version>
         </dependency>
 
         <!-- test to validate features.xml -->
@@ -83,12 +77,10 @@
         <dependency>
             <groupId>org.opendaylight.controller</groupId>
             <artifactId>config-api</artifactId>
-            <version>${config.version}</version>
         </dependency>
         <dependency>
             <groupId>org.opendaylight.controller</groupId>
             <artifactId>netty-config-api</artifactId>
-            <version>${config.version}</version>
         </dependency>
     </dependencies>
 
