@@ -38,6 +38,8 @@
                 <groupId>${project.groupId}</groupId>
                 <artifactId>features-tcpmd5</artifactId>
                 <version>${project.version}</version>
+                <classifier>features</classifier>
+                <type>xml</type>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
