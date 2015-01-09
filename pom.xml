@@ -20,7 +20,7 @@
     <artifactId>tcpmd5-aggregator</artifactId>
     <description>RFC2385-enabled sockets</description>
     <packaging>pom</packaging>
-    <name>${project.artifactId}</name>
+    <name>tcpmd5</name> <!-- Used by Sonar to set project name -->
 
     <prerequisites>
         <maven>3.0.4</maven>
