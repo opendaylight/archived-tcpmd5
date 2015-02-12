@@ -10,22 +10,51 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.opendaylight.tcpmd5</groupId>
-        <artifactId>tcpmd5-parent</artifactId>
-        <version>1.1.0-SNAPSHOT</version>
-        <relativePath>../../parent</relativePath>
+        <groupId>org.opendaylight.odlparent</groupId>
+        <artifactId>features-parent</artifactId>
+        <version>1.5.0-SNAPSHOT</version>
     </parent>
-    <artifactId>features-tcpmd5</artifactId>
-    <name>TCPMD5 - Karaf Features</name>
 
+    <artifactId>features-tcpmd5</artifactId>
+    <version>1.1.0-SNAPSHOT</version>
+    <name>TCPMD5 - Karaf Features</name>
     <packaging>jar</packaging>
 
     <properties>
-        <features.file>features.xml</features.file>
-        <commons.opendaylight.version>1.5.0-SNAPSHOT</commons.opendaylight.version>
-        <config.version>0.3.0-SNAPSHOT</config.version>
         <yangtools.version>0.7.0-SNAPSHOT</yangtools.version>
+        <config.version>0.3.0-SNAPSHOT</config.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- This project -->
+            <dependency>
+                <groupId>org.opendaylight.tcpmd5</groupId>
+                <artifactId>tcpmd5-artifacts</artifactId>
+                <version>${project.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+
+            <!-- YANG tools -->
+            <dependency>
+                <groupId>org.opendaylight.yangtools</groupId>
+                <artifactId>yangtools-artifacts</artifactId>
+                <version>${yangtools.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+
+            <!-- Controller infrastructure -->
+            <dependency>
+                <groupId>org.opendaylight.controller</groupId>
+                <artifactId>config-artifacts</artifactId>
+                <version>${config.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -56,21 +85,7 @@
             <artifactId>features-yangtools</artifactId>
             <classifier>features</classifier>
             <type>xml</type>
-        </dependency>
-
-        <!-- test to validate features.xml -->
-        <dependency>
-            <groupId>org.opendaylight.yangtools</groupId>
-            <artifactId>features-test</artifactId>
-            <version>${yangtools.version}</version>
-        </dependency>
-
-        <!-- dependency for opendaylight-karaf-empty for use by testing -->
-        <dependency>
-            <groupId>org.opendaylight.controller</groupId>
-            <artifactId>opendaylight-karaf-empty</artifactId>
-            <version>${commons.opendaylight.version}</version>
-            <type>zip</type>
+            <scope>runtime</scope>
         </dependency>
 
         <!-- other dependencies -->
@@ -83,65 +98,5 @@
             <artifactId>netty-config-api</artifactId>
         </dependency>
     </dependencies>
-
-    <build>
-        <resources>
-            <resource>
-                <filtering>true</filtering>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>filter</id>
-                        <goals>
-                            <goal>resources</goal>
-                        </goals>
-                        <phase>generate-resources</phase>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>attach-artifacts</id>
-                        <goals>
-                            <goal>attach-artifact</goal>
-                        </goals>
-                        <phase>package</phase>
-                        <configuration>
-                            <artifacts>
-                                <artifact>
-                                    <file>${project.build.directory}/classes/${features.file}</file>
-                                    <type>xml</type>
-                                    <classifier>features</classifier>
-                                </artifact>
-                            </artifacts>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <systemPropertyVariables>
-                        <karaf.distro.groupId>org.opendaylight.controller</karaf.distro.groupId>
-                        <karaf.distro.artifactId>opendaylight-karaf-empty</karaf.distro.artifactId>
-                        <karaf.distro.version>${commons.opendaylight.version}</karaf.distro.version>
-                    </systemPropertyVariables>
-                    <dependenciesToScan>
-                        <dependency>org.opendaylight.yangtools:features-test</dependency>
-                    </dependenciesToScan>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>
 
