@@ -127,7 +127,7 @@ public class DefaultMD5ServerSocketChannelConfig extends DefaultServerSocketChan
     @Override
     @SuppressWarnings("unchecked")
     public <T> T getOption(final ChannelOption<T> option) {
-        if (option == MD5ChannelOption.TCP_MD5SIG) {
+        if (MD5ChannelOption.TCP_MD5SIG.equals(option)) {
             return (T) keyAccess.getKeys();
         }
 
@@ -136,7 +136,7 @@ public class DefaultMD5ServerSocketChannelConfig extends DefaultServerSocketChan
 
     @Override
     public <T> boolean setOption(final ChannelOption<T> option, final T value) {
-        if (option == MD5ChannelOption.TCP_MD5SIG) {
+        if (MD5ChannelOption.TCP_MD5SIG.equals(option)) {
             keyAccess.setKeys((KeyMapping) value);
             return true;
         }
