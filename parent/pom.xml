@@ -213,7 +213,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.12</version>
                 <configuration>
                     <failOnViolation>true</failOnViolation>
                     <configLocation>checkstyle-logging.xml</configLocation>
