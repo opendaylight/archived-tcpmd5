@@ -11,7 +11,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.2.0 http://karaf.apache.org/xmlns/features/v1.2.0">
 
-    <repository>mvn:org.opendaylight.yangtools/features-yangtools/${yangtools.version}/xml/features</repository>
+    <repository>mvn:org.opendaylight.yangtools/features-yangtools/{{VERSION}}/xml/features</repository>
+    <repository>mvn:org.opendaylight.mdsal/features-mdsal/{{VERSION}}/xml/features</repository>
 
     <feature name='odl-tcpmd5-all' version='${project.version}'>
         <feature version='${project.version}'>odl-tcpmd5-base</feature>
@@ -20,7 +21,7 @@
     </feature>
 
     <feature name="odl-tcpmd5-base" version="${project.version}">
-        <feature version='${yangtools.version}'>odl-yangtools-binding</feature>
+        <feature version='${mdsal.version}'>odl-mdsal-binding-base</feature>
         <feature version='${yangtools.version}'>odl-yangtools-common</feature>
 
         <bundle>mvn:com.google.guava/guava/{{VERSION}}</bundle>
