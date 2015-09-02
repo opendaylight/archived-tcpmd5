@@ -20,7 +20,7 @@
     </feature>
 
     <feature name="odl-tcpmd5-base" version="${project.version}">
-        <feature version='${yangtools.version}'>odl-yangtools-binding</feature>
+        <feature version='${yangtools.version}'>odl-mdsal-binding-base</feature>
         <feature version='${yangtools.version}'>odl-yangtools-common</feature>
 
         <bundle>mvn:com.google.guava/guava/{{VERSION}}</bundle>
