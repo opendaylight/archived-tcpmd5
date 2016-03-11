@@ -38,7 +38,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <maven.dependency.version>2.8</maven.dependency.version>
         <maven.info.reports.version>2.7</maven.info.reports.version>
 
         <!-- YANG tools artifacts -->
@@ -161,7 +160,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>${maven.dependency.version}</version>
                 <configuration>
                     <failOnWarning>true</failOnWarning>
                     <ignoreNonCompile>true</ignoreNonCompile>
