@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.opendaylight.odlparent</groupId>
         <artifactId>odlparent</artifactId>
-        <version>1.6.1-Beryllium-SR1</version>
+        <version>1.6.2-SNAPSHOT</version>
         <relativePath></relativePath>
     </parent>
 
@@ -20,7 +20,7 @@
     <groupId>org.opendaylight.tcpmd5</groupId>
     <artifactId>tcpmd5-parent</artifactId>
     <name>TCP-MD5 parent</name>
-    <version>1.2.1-Beryllium-SR1</version>
+    <version>1.2.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <prerequisites>
@@ -42,10 +42,10 @@
         <maven.info.reports.version>2.7</maven.info.reports.version>
 
         <!-- YANG tools artifacts -->
-        <yangtools.version>0.8.1-Beryllium-SR1</yangtools.version>
+        <yangtools.version>0.8.2-SNAPSHOT</yangtools.version>
 
         <!-- Controller artifacts -->
-        <controller.config.version>0.4.1-Beryllium-SR1</controller.config.version>
+        <controller.config.version>0.4.2-SNAPSHOT</controller.config.version>
     </properties>
 
     <dependencyManagement>
