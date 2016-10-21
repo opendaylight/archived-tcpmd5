@@ -12,20 +12,20 @@
     <parent>
         <groupId>org.opendaylight.odlparent</groupId>
         <artifactId>features-parent</artifactId>
-        <version>1.6.4-SNAPSHOT</version>
+        <version>1.6.5-SNAPSHOT</version>
         <relativePath/>
     </parent>
 
     <groupId>org.opendaylight.tcpmd5</groupId>
     <artifactId>features-tcpmd5</artifactId>
-    <version>1.2.4-SNAPSHOT</version>
+    <version>1.2.5-SNAPSHOT</version>
     <name>TCPMD5 - Karaf Features</name>
     <packaging>jar</packaging>
 
     <properties>
-        <yangtools.version>0.8.4-SNAPSHOT</yangtools.version>
-        <mdsal.version>2.0.4-SNAPSHOT</mdsal.version>
-        <config.version>0.4.4-SNAPSHOT</config.version>
+        <yangtools.version>0.8.5-SNAPSHOT</yangtools.version>
+        <mdsal.version>2.0.5-SNAPSHOT</mdsal.version>
+        <config.version>0.4.5-SNAPSHOT</config.version>
     </properties>
 
     <dependencyManagement>
