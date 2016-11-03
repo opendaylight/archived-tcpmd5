@@ -11,7 +11,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
     <required-capabilities>
         <capability>urn:opendaylight:params:xml:ns:yang:controller:tcpmd5:cfg?module=odl-tcpmd5-cfg&amp;revision=2014-04-27</capability>
         <capability>urn:opendaylight:params:xml:ns:yang:controller:tcpmd5:jni:cfg?module=odl-tcpmd5-jni-cfg&amp;revision=2014-04-27</capability>
-        <capability>urn:opendaylight:params:xml:ns:yang:controller:tcpmd5:netty:cfg?module=odl-tcpmd5-netty-cfg&amp;revision=2014-04-27</capability>
+        <capability>urn:opendaylight:params:xml:ns:yang:controller:tcpmd5:netty?module=odl-tcpmd5-netty-cfg&amp;revision=2014-04-27</capability>
     </required-capabilities>
 
     <configuration>
