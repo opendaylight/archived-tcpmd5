@@ -369,7 +369,7 @@ void Java_org_opendaylight_tcpmd5_jni_NativeKeyAccess_setChannelKey0(JNIEnv *env
 		case 16:
 			// IPv6 dest in IPv6 socket
 			dest = &((struct sockaddr_in6 *)&md5sig.tcpm_addr)->sin6_addr;
-			return;
+			break;
 		default:
 			ILLEGAL_STATE("Unexpected address length %d", addrlen);
 			return;
